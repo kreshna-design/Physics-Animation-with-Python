@@ -64,6 +64,7 @@ zM = odeint(dzdtLF, z0LF, tLF)
 
 # Animation part
 
+plt.style.use('dark_background')
 nframe = steps #  number of frames
 fig, ax = plt.subplots() # plot for animation
 # x y boundaries
@@ -84,11 +85,11 @@ xm = zM[:,4]
 ym = zM[:,5]
 
 #  plotting of Earth, Sun, Mars
-ime = ax.scatter(xe[0],ye[0], s=300, c='g') # Earth
-ims = ax.scatter(xs[0],ys[0], s=1200, c='orange') # Sun
-imm = ax.scatter(xm[0],ym[0], s=450, c='r') # Mars
-imep= ax.plot(zM[:,0],zM[:,1])#EARTH PATH
-immp= ax.plot(zM[:,4],zM[:,5])#MARS PATH
+ime = ax.scatter(xe[0],ye[0], s=300, c='cyan') # Earth
+ims = ax.scatter(xs[0],ys[0], s=1200, c='yellow') # Sun
+imm = ax.scatter(xm[0],ym[0], s=450, c='orange') # Mars
+imep= ax.plot(zM[:,0],zM[:,1], c='white') # EARTH PATH
+immp= ax.plot(zM[:,4],zM[:,5], c='white') # MARS PATH
 
 def update_position(num):
     global xe,ye,xs,ys,xm,ym, new_xe, new_ye, new_xs, new_ys, new_xm, new_ym
@@ -121,7 +122,7 @@ def update_position(num):
 
 update_position(nframe)
 
-imani = animation.FuncAnimation(fig,update_position, nframe,interval=1,repeat=False)
+imani = animation.FuncAnimation(fig,update_position, nframe,interval=40,repeat=False)
 imani.save('solarsystem.mp4')
 
 #retrograde.pdf part
